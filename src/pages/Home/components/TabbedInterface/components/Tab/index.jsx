@@ -1,12 +1,15 @@
-import React from "react";
+import React from 'react';
 
-import "./styles.css";
+import {connect} from 'tools/StateProvider';
+import {formFieldSelector} from 'ducks/reduxForms';
 
-const Tab = ({ label, onClick, isActive, onDeleteTab }) => {
+import './styles.css';
+
+const Tab = ({label, onClick, isActive, onDeleteTab, subtext}) => {
   return (
-    <div className={`tab ${isActive && "active"}`}>
+    <div className={`tab ${isActive && 'active'}`}>
       <div className="tab__label" onClick={e => onClick(label)}>
-        {label}
+        {label} {subtext}
       </div>
       <div className="tab__remove" onClick={e => onDeleteTab(label)}>
         x
@@ -15,4 +18,16 @@ const Tab = ({ label, onClick, isActive, onDeleteTab }) => {
   );
 };
 
-export default Tab;
+const mapStateToProps = (state, props) => {
+  console.log(state);
+  return {
+    subtext: formFieldSelector('tabContentForm', 'subtext', state)
+  };
+};
+
+const mapDispatchToProps = {};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Tab);

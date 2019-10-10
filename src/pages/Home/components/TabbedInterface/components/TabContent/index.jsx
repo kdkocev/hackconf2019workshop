@@ -4,6 +4,8 @@ import {connect} from 'tools/StateProvider';
 
 import {startTesting, stopTesting} from 'ducks/testing';
 
+import TabContentForm from './components/TabContentForm';
+
 import './styles.css';
 
 class TabContent extends React.Component {
@@ -40,6 +42,7 @@ class TabContent extends React.Component {
         {this.state.isEditting && (
           <React.Fragment>
             <div className="textContainer">
+              <TabContentForm />
               <textarea
                 onChange={this.changeContent}
                 value={this.state.content}></textarea>
