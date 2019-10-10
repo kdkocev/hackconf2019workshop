@@ -2,6 +2,7 @@ import React from 'react';
 
 import TabbedInterface from './components/TabbedInterface';
 import backgroundImage from 'assets/images/forest-wallpaper.jpg';
+import Navigation from 'components/Navigation';
 
 import './styles.css';
 
@@ -9,9 +10,7 @@ class Home extends React.Component {
   render() {
     return (
       <div className="Home" style={{backgroundImage: `url(${backgroundImage})`}}>
-        <div className="navigation">
-          navigation
-        </div>
+        <Navigation />
         <div className="headerImage">
         </div>
         <div className="content">
