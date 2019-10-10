@@ -1,31 +1,20 @@
-import React from "react";
+import React from 'react';
+
+import {mainReducer} from 'ducks';
 
 const StateContext = React.createContext();
-
-const reducer = (action, state) => {
-  switch (action.type) {
-    case "startTesting":
-      return { ...state, testing: true };
-    case "stopTesting":
-      return { ...state, testing: false };
-  }
-
-  return state;
-};
 
 class StateProvider extends React.Component {
   state = {};
 
   dispatch = action => {
-    this.setState(reducer(action, this.state));
+    this.setState(mainReducer(this.state, action));
   };
 
-  getSharedContext = () => {
-    return {
-      sharedState: this.state,
-      dispatch: this.dispatch
-    };
-  };
+  getSharedContext = () => ({
+    sharedState: this.state,
+    dispatch: this.dispatch
+  });
 
   render() {
     return (
@@ -36,4 +25,36 @@ class StateProvider extends React.Component {
   }
 }
 
-export { StateProvider, StateContext };
+const connect = (mapStateToProps, mapDispatchToProps) => Component => {
+  class Wrapper extends React.Component {
+    actionsDispatchedToProps = dispatch => {
+      const actionsDispatched = {};
+
+      Object.keys(mapDispatchToProps).forEach(actionName => {
+        actionsDispatched[actionName] = actionParams =>
+          dispatch(mapDispatchToProps[actionName](actionParams));
+      });
+
+      return actionsDispatched;
+    };
+
+    render() {
+      return (
+        <StateContext.Consumer>
+          {({sharedState, dispatch}) => (
+            <Component
+              {...this.props}
+              {...mapStateToProps(sharedState, this.props)}
+              {...this.actionsDispatchedToProps(dispatch)}
+              dispatch={dispatch}
+            />
+          )}
+        </StateContext.Consumer>
+      );
+    }
+  }
+
+  return Wrapper;
+};
+
+export {StateProvider, connect};
