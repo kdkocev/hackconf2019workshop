@@ -1,0 +1,29 @@
+.tabContent {
+  padding: 20px;
+  display: none;
+  border: 1px solid silver;
+  border-top: 0;
+  background-color: white;
+}
+
+.tabContent.active {
+  display: block;
+}
+
+.textContainer {
+  height: 350px;
+  overflow: auto; 
+}
+
+.textContainer textarea {
+  width: calc(100% - 30px);
+  height: 300px;
+}
+
+.buttonsContainer {
+  padding-top: 20px;
+}
+
+.buttonsContainer button {
+  margin-right: 10px;
+}

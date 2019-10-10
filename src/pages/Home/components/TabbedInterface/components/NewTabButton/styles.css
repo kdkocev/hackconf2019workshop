@@ -1,0 +1,20 @@
+.newTabButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  background-color: white;
+  border: 1px solid silver;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.newTabButton:hover {
+  background-color: #eeeeee;
+}
+
+.newTabButton.active {
+  width: 200px;
+}

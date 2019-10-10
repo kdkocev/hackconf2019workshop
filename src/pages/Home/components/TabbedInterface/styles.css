@@ -1,0 +1,10 @@
+.tabbedInterface {
+  margin-top: -60px;
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tabsContainer {
+  display: flex;
+}
