@@ -7,6 +7,16 @@ const StateContext = React.createContext();
 class StateProvider extends React.Component {
   state = {};
 
+  componentDidMount() {
+    const previousState = window.localStorage.getItem('applicationState');
+
+    console.log(JSON.parse(previousState));
+
+    if (previousState) {
+      this.setState(JSON.parse(previousState));
+    }
+  }
+
   dispatch = action => {
     this.setState(mainReducer(this.state, action));
   };
