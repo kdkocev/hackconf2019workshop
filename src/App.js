@@ -1,12 +1,14 @@
 import React from 'react';
 
 import Home from 'pages/Home';
+import {StateProvider} from 'tools/StateProvider';
+
 
 function App() {
   return (
-    <div className="App">
+    <StateProvider>
       <Home />
-    </div>
+    </StateProvider>
   );
 }
 

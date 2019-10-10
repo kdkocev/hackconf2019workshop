@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import './styles.css';
+import "./styles.css";
 
-const Tab = ({label, onClick, isActive, onDeleteTab}) => {
+const Tab = ({ label, onClick, isActive, onDeleteTab }) => {
   return (
     <div className={`tab ${isActive && "active"}`}>
       <div className="tab__label" onClick={e => onClick(label)}>
@@ -12,7 +12,7 @@ const Tab = ({label, onClick, isActive, onDeleteTab}) => {
         x
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Tab;
